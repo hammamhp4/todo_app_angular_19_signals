@@ -1,0 +1,32 @@
+<div class="todo-item-content"
+     (mouseenter)="showCloseButton()"
+     (mouseleave)="hideCloseButton()"
+     (dblclick)="enableEditMode()"
+     (focusout)="disableEditMode()">
+
+  @if (showEditForm()){
+  <form [formGroup]="todoEditForm" >
+    <input type="text"
+           autofocusInput
+           placeholder="What needs to be done?"
+           class="todos-input"
+           (keydown)="keyPress($event)"
+           formControlName="todoName">
+  </form>
+  }
+
+  @if (!showEditForm()){
+  <div class="todo-name-check">
+  <div>
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" [id]="todoItem.id" (click)="todoItemClicked()" [checked]="todoItem.completed">
+                    <label [for]="todoItem.id"></label>
+                </div>
+  </div>
+  <div [ngClass]="{'completed': todoItem.completed}"> {{todoItem.name}}</div>
+  </div>
+  <div class="close" [ngClass]="{'hide-close-button': hideClose}" (click)="removeTodo()">x</div>
+
+  }
+</div>
+

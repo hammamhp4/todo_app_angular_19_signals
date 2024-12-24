@@ -1,0 +1,58 @@
+.todos-list {
+  background-color: white;
+}
+
+.todos-list-footer {
+  border-top: 1px solid #e6e6e6;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  align-items: center;
+}
+
+.filter-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul {
+  list-style-type: none;
+
+  li {
+    padding: 5px;
+  }
+
+  a {
+    padding: 5px;
+    color: #111111;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #111111;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  a:focus {
+    border-radius: 3px;
+    box-shadow: 0 0 2px 2px #cf7d7d;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+}
+
+.clear-complete {
+  color: #111111;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.clear-complete:hover {
+  text-decoration: underline;
+  color: #111111;
+  cursor: pointer;
+}

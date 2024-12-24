@@ -1,0 +1,34 @@
+<div class="todos-list">
+
+  <div class="todos-list-body">
+    @for (item of todoList(); track $index) {
+    <app-todo-item [todoItem]="item"></app-todo-item>
+    }
+  </div>
+  <div class="todos-list-footer">
+    <span>
+    {{activeTodoListLength()}} {{activeTodoListLength() != 1 ? 'items ' : 'item ' }} left!
+    </span>
+    <ul class="filter-links">
+      <li>
+        <a href="#" [ngClass]="{ 'active' :selectedFilter === filterTypes[filterTypes.ALL]}"
+           (click)="changeFilterType(filterTypes.ALL)">
+          All
+        </a>
+      </li>
+      <li>
+        <a href="#/active" [ngClass]="{ 'active' :selectedFilter === filterTypes[filterTypes.ACTIVE]}"
+           (click)="changeFilterType(filterTypes.ACTIVE)">
+          Active
+        </a>
+      </li>
+      <li>
+        <a href="#/completed" [ngClass]="{ 'active' :selectedFilter === filterTypes[filterTypes.COMPLETED]}"
+           (click)="changeFilterType(filterTypes.COMPLETED)">
+          Completed
+        </a>
+      </li>
+    </ul>
+    <a href="#" class="clear-complete" (click)="clearCompleted()">Clear completed</a>
+  </div>
+</div>

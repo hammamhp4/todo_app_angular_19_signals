@@ -1,1 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
+
+@font-face {
+  font-family: Helvetica;
+  src: url(assets/fonts/HelveticaNeueRoman.otf);
+}
+
+@font-face {
+  font-family: HelveticaItalic;
+  src: url(assets/fonts/HelveticaNeueItalic.ttf);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-weight: 200;
+  font-family: Helvetica;
+}
+
+html {
+  margin: 0;
+}
+
+body {
+  background-color: #f5f5f5;
+}
+
+h1 {
+  color: #b83f45;
+  font-size: 80px;
+  text-align: center;
+  margin: 20px;
+}
+
+.app-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todos-container {
+  width: 550px;
+}
+
+

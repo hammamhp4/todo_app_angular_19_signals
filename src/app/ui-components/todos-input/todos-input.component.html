@@ -1,0 +1,13 @@
+<form [formGroup]="todoForm" class="todos-input-container">
+  <input type="text"
+         placeholder="What needs to be done?"
+         class="todos-input"
+         (keydown)="keyPress($event)"
+         formControlName="todoName">
+  @if(todoListLength() > 0){
+  <label for="check-all" class="option">
+    <input type="checkbox" id="check-all" name="check-all" [checked]="allItemsChecked()" (click)="selectUnselectAll()"/>
+    <span class="checkbox check-all"></span>
+  </label>
+  }
+</form>
