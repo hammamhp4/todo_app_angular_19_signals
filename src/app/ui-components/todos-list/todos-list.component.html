@@ -1,13 +1,13 @@
 <div class="todos-list">
 
   <div class="todos-list-body">
-    @for (item of todoList(); track $index) {
+    @for (item of (todoList$ | async); track $index) {
     <app-todo-item [todoItem]="item"></app-todo-item>
     }
   </div>
   <div class="todos-list-footer">
     <span>
-    {{activeTodoListLength()}} {{activeTodoListLength() != 1 ? 'items ' : 'item ' }} left!
+    {{activeTodoListLength|async}} {{(activeTodoListLength|async) != 1 ? 'items ' : 'item ' }} left!
     </span>
     <ul class="filter-links">
       <li>

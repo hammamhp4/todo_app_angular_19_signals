@@ -1,15 +1,19 @@
-import {Component, Signal} from '@angular/core';
-import {CommonModule, NgClass} from '@angular/common';
-import {TodosService} from '../../services/todos.service';
+import {Component} from '@angular/core';
+import {AsyncPipe, NgClass} from '@angular/common';
 import {TodoItemComponent} from '../todo-item/todo-item.component';
 import {ITodo} from '../../types/ITodo';
 import {filterTypes} from '../../types/todo-filter.enum';
+import {Observable} from 'rxjs';
+import {TodoStoreService} from '../../store/todo.service';
+import {TodoQuery} from '../../store/todo.query';
 
 
 @Component({
   selector: 'app-todos-list',
   imports: [
-    NgClass, CommonModule, TodoItemComponent
+    NgClass,
+    AsyncPipe,
+    TodoItemComponent
   ],
   standalone: true,
   templateUrl: './todos-list.component.html',
@@ -18,12 +22,14 @@ import {filterTypes} from '../../types/todo-filter.enum';
 
 
 export class TodosListComponent {
-  todoList: Signal<ITodo[]>;
-  activeTodoListLength: Signal<number>;
+  todoList$: Observable<ITodo[]>;
+  activeTodoListLength: Observable<number>;
 
-  constructor(public todoService: TodosService) {
-    this.todoList = todoService.todoListToDisplay
-    this.activeTodoListLength = todoService.activeTodoListLength
+  constructor( public todoStoreService: TodoStoreService,
+              public todoQuery: TodoQuery
+  ) {
+    this.todoList$ = todoQuery.todoListToDisplay$
+    this.activeTodoListLength = todoQuery.activeTodoListLength$
   }
 
   selectedFilter: string = ''
@@ -31,11 +37,11 @@ export class TodosListComponent {
 
   changeFilterType(filterType: filterTypes) {
     this.selectedFilter = filterType
-    this.todoService.setTodoFilter(filterType)
+    this.todoStoreService.setTodoFilter(filterType)
   }
 
   clearCompleted() {
-    this.todoService.removeCompletedTodo()
+    this.todoStoreService.removeCompletedTodo()
   }
 
 

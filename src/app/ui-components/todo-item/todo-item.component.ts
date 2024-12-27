@@ -1,7 +1,7 @@
 import {Component, Input, signal} from '@angular/core';
 import {ITodo} from '../../types/ITodo';
 import {NgClass} from '@angular/common';
-import {TodosService} from '../../services/todos.service';
+import {TodoStoreService} from '../../store/todo.service';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {AutofocusInputDirective} from '../../directives/autofocus-input.directive';
 
@@ -25,7 +25,7 @@ export class TodoItemComponent {
     todoName: new FormControl('', [])
   });
 
-  constructor(public todosService: TodosService) {
+  constructor( public todoStoreService: TodoStoreService) {
   }
 
   get todoNewName(): FormControl {
@@ -40,7 +40,7 @@ export class TodoItemComponent {
   }
 
   addTodo() {
-    this.todosService.editTodoElement(this.todoItem, this.todoNewName.value)
+    this.todoStoreService.editTodoElement(this.todoItem, this.todoNewName.value)
   }
 
 
@@ -53,11 +53,11 @@ export class TodoItemComponent {
   }
 
   removeTodo() {
-    this.todosService.removeTodo(this.todoItem)
+    this.todoStoreService.removeTodo(this.todoItem)
   }
 
   todoItemClicked() {
-    this.todosService.checkUncheckTodo(this.todoItem)
+    this.todoStoreService.checkUncheckTodo(this.todoItem)
   }
 
   enableEditMode() {

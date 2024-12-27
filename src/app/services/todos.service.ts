@@ -15,7 +15,7 @@ export class TodosService {
   activeTodoListLength = computed<number>(() => this.activeTodoList().length);
   todoListLength = computed<number>(() => this.todoList().length);
   todoListStatus = computed<boolean>(() => this.activeTodoList().some((todoIem) => !todoIem.completed));
-  canCheckAllList = computed<boolean>(() => this.todoList().length > 0 && this.activeTodoList().every((todoIem) => todoIem.completed));
+  canCheckAllList = computed<boolean>(() => this.todoList().length > 0 && this.todoList().some((todoIem) => !todoIem.completed));
   todoListToDisplay = computed<ITodo[]>(() => {
     if (this.todoListFilter() == filterTypes.ACTIVE) {
       return this.activeTodoList()

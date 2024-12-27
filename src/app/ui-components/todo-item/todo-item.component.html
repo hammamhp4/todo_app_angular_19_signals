@@ -19,7 +19,7 @@
   <div class="todo-name-check">
   <div>
                   <div class="checkbox-wrapper">
-                    <input type="checkbox" [id]="todoItem.id" (click)="todoItemClicked()" [checked]="todoItem.completed">
+                    <input type="checkbox" [id]="todoItem.id" (click)="$event.preventDefault();todoItemClicked()" [checked]="todoItem.completed">
                     <label [for]="todoItem.id"></label>
                 </div>
   </div>
